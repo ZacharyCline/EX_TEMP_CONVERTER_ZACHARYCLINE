@@ -108,24 +108,22 @@ function outputToDom (outputTemp, type) {
 		}
 	}
 }
-function resetForm () {
+function clear () {
 	var clear = document.getElementById("clear");
-	document.getElementById("Main").reset();
-	
+	document.getElementById('output').value='red';
+	console.log(clear);
 
-
+}
 
 
 
 	//need something passed from the outputToDom function and set equal to ""
 	
 
-	// console.log("Reset Form", ;
-
-}
+	// console.log("Reset Form", 
 // Assign a function to be executed when the button is clicked
 submit.addEventListener("click", checkInput);
-clear.addEventListener("click", resetForm);
+clear.addEventListener("click");
 
 
 
