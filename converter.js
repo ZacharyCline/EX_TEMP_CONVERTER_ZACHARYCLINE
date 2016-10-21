@@ -19,22 +19,124 @@
 // For any other temperature, the color should be green.
 
 
-function toCelsius () {
+// Html ELEMENTS		ID
+// input field			input
+// radio button		f
+// radio button		c
+// submit button		submit
+// clear button		clear
+//div output			output
 
-}
 
-function toFahrenheit () {
 
-}
 
-// Get a reference to the button element in the DOM
-var button = document.getElementById("converter");
+
+var submit = document.getElementById("submit");
+
+
+
+
 
 // This function should determine which conversion should
 // happen based on which radio button is selected.
-function determineConverter (clickEvent) {
-  console.log("event", clickEvent);
+function determineConverter (input) {
+	
+	var f = document.getElementById("f");
+	var c = document.getElementById("c");
+	
+	if (f.checked) {
+		toFahrenheit(input);
+	} else if (c.checked) {
+		toCelsius(input);
+	} else {
+		alert("Something is Jacked UP!");
+	}
+
+	//console.log(f, c);
+  //console.log("event", clickEvent);
 }
 
+function toCelsius (input) {
+	var outputC = (input - 32) / 1.8;
+	//console.log("celsius ", input);
+	outputToDom(outputC, "c");
+
+}
+
+function toFahrenheit (input) {
+	var outputF = (input * 1.8) + 32;
+	//console.log("fahrenheit ", input);
+	outputToDom(outputF, "f" );
+
+}
+
+function getInput (input) {
+	//console.log("is this running?", input);
+}
+function checkInput () {
+	var input = document.getElementById("input").value;
+	//console.log(input.value)
+	if (input) {
+		determineConverter(input);
+	} else {
+		alert("No input!");
+	}
+ }
+
+function outputToDom (outputTemp, type) {
+	//console.log("Color Text", outputTemp.toFixed(1), type);
+	var output = document.getElementById("output");
+
+
+	if (type === "c") {
+		if (outputTemp > 32){
+		output.innerHTML = "<p class= 'red'>" + outputTemp.toFixed(1) +"</p>";
+		} else if (outputTemp < 0){
+		output.innerHTML = "<p class= 'blue'>" + outputTemp.toFixed(1) +"</p>";
+		}else {
+		output.innerHTML = "<p class= 'green'>" + outputTemp.toFixed(1) +"</p>";
+		}
+
+
+	} else{
+		if (outputTemp > 90){
+		output.innerHTML = "<p class= 'red'>" + outputTemp.toFixed(1) + "</p>";
+		} else if (outputTemp < 32){
+		output.innerHTML = "<p class= 'blue'>" + outputTemp.toFixed(1) + "</p>";
+		}else {
+		output.innerHTML = "<p class= 'green'>" + outputTemp.toFixed(1) + "</p>";
+		}
+	}
+}
+function resetForm () {
+	var clear = document.getElementById("clear");
+	document.getElementById("Main").reset();
+	
+
+
+
+
+
+	//need something passed from the outputToDom function and set equal to ""
+	
+
+	// console.log("Reset Form", ;
+
+}
 // Assign a function to be executed when the button is clicked
-button.addEventListener("click", determineConverter);
+submit.addEventListener("click", checkInput);
+clear.addEventListener("click", resetForm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
